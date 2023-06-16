@@ -15,8 +15,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.16538731235752308 0.843391191180939 0.5112126128623511 0.7325842650283585
-  position -3.039749242965447 -1.438610258188437 2.467103869549552
+  orientation 0.13220366740692926 0.06789355888400414 -0.9888946632408439 2.201756180249464
+  position 0.7233387987401452 0.9278135265179894 0.4413769405664598
 }
 TexturedBackground {
 }
@@ -34,29 +34,6 @@ Floor {
     metalness 0
   }
 }
-DEF BALL Solid {
-  translation 0.32 0.01 0.11
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColorMap ImageTexture {
-          url [
-            "438-4383655_its-all-ogre-now-freetoedit-shrek-ogre-head.png"
-          ]
-        }
-        roughness 1
-        metalness 0
-      }
-      geometry DEF BALL_GEOMETRY Sphere {
-        radius 0.07
-        subdivision 2
-      }
-    }
-  ]
-  boundingObject USE BALL_GEOMETRY
-  physics Physics {
-  }
-}
 Robot {
   translation 0 0 0.04
   children [
@@ -70,7 +47,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0 0 0.0700015
+        translation 0 0 0.07000150000000022
         rotation 0 1 0 0
         children [
           HingeJoint {
@@ -84,7 +61,7 @@ Robot {
               }
             ]
             endPoint Solid {
-              translation 0 0 0.06
+              translation -1.3958694318694525e-10 0 0.059999999999999984
               rotation 0 1 0 0
               children [
                 DEF WHEEL1 Shape {
@@ -164,6 +141,10 @@ Robot {
       ]
       name "sensor_der"
       boundingObject USE sensor
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
     }
     DistanceSensor {
       translation 0.0477666 0.014776 0
@@ -182,6 +163,10 @@ Robot {
       ]
       name "sensor_izq"
       boundingObject USE Sensor
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
       aperture 0.2
       gaussianWidth 3
     }
@@ -206,8 +191,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -1.1080672103182767e-05 0.059999999088792 1.4873936462698558e-06
-        rotation 0.999998962349679 -0.0010186511674728134 0.0010186507568267676 1.570801051107016
+        translation -1.1080672103182769e-05 0.059999999088792 1.4873936462698515e-06
+        rotation 0.9999989623496791 -0.0010186511674729608 0.0010186507568264538 1.5708010511070156
         children [
           DEF WHEEL1 Shape {
             appearance DEF VERDE Appearance {
@@ -238,8 +223,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -1.1093e-05 -0.06 2.24768e-06
-        rotation -0.9999994483713285 0.000742718442608812 -0.0007427155268667135 4.712384742679208
+        translation -1.1092999999999997e-05 -0.06 2.2476799999999974e-06
+        rotation -0.9999994483713285 0.000742718442609676 -0.0007427155268675285 4.712384742679209
         children [
           DEF WHEEL2 Shape {
             appearance USE VERDE
@@ -401,4 +386,22 @@ Solid {
   ]
   name "arbol1"
   boundingObject USE TRONCO
+}
+Solid {
+  translation 0.41 -0.06 0.03
+  children [
+    DEF objetivo Shape {
+      appearance PBRAppearance {
+        baseColor 0.666667 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.1 0.1 0.05
+      }
+    }
+  ]
+  boundingObject USE objetivo
+  physics Physics {
+  }
 }
