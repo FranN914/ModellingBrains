@@ -15,8 +15,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.13220366740692926 0.06789355888400414 -0.9888946632408439 2.201756180249464
-  position 0.7233387987401452 0.9278135265179894 0.4413769405664598
+  orientation 0.20528375304452334 0.1041312272403782 -0.9731470948676607 2.224495479886156
+  position 0.9180726569544342 1.041086444682545 0.9098184937146336
 }
 TexturedBackground {
 }
@@ -35,11 +35,14 @@ Floor {
   }
 }
 Robot {
-  translation 0 0 0.04
+  translation 0.10996805173136215 -1.7074898345295667e-07 0.03959752629435106
+  rotation -0.0019170312462347744 -0.9999968283343318 -0.001633497008807273 0.0022818433056824815
   children [
     HingeJoint {
       jointParameters HingeJointParameters {
+        position 9.032038639064568e-08
         axis 0 1 0
+        anchor -0.04 0 0.03
       }
       device [
         RotationalMotor {
@@ -47,13 +50,14 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0 0 0.07000150000000022
-        rotation 0 1 0 0
+        translation -0.029999996387049102 0 0.07000149909679597
+        rotation 0 1 0 8.940696716308595e-08
         children [
           HingeJoint {
             jointParameters HingeJointParameters {
+              position -1.5316134877337812e-09
               axis 0 1 0
-              anchor 0 0 0.02
+              anchor 0 0 0.04
             }
             device [
               RotationalMotor {
@@ -61,23 +65,73 @@ Robot {
               }
             ]
             endPoint Solid {
-              translation -1.3958694318694525e-10 0 0.059999999999999984
-              rotation 0 1 0 0
+              translation 4.8005830760274314e-06 3.220740111300017e-07 0.06999669191592135
+              rotation -0.0002053618541507654 0.9999999786217285 -2.4146453644783802e-05 0.00013307953682042454
               children [
-                DEF WHEEL1 Shape {
-                  appearance DEF VERDE Appearance {
-                    material Material {
-                      diffuseColor 0.0627451 0.8 0.00784314
+                DEF agarre Group {
+                  children [
+                    Transform {
+                      translation -0.0150004 0.0486603 0.03
+                      rotation 0 0 1 1.5708
+                      children [
+                        Shape {
+                          appearance DEF VERDE Appearance {
+                            material Material {
+                              diffuseColor 0.0627451 0.8 0.00784314
+                            }
+                          }
+                          geometry Box {
+                            size 0.01 0.02 0.02
+                          }
+                        }
+                      ]
                     }
-                  }
-                  geometry DEF RUEDA Cylinder {
-                    height 0.05
-                    radius 0.01
-                  }
+                    Transform {
+                      translation -0.0150001 -0.0513397 0.03
+                      rotation 0 0 1 1.5708
+                      children [
+                        Shape {
+                          appearance DEF VERDE Appearance {
+                            material Material {
+                              diffuseColor 0.0627451 0.8 0.00784314
+                            }
+                          }
+                          geometry Box {
+                            size 0.01 0.02 0.02
+                          }
+                        }
+                      ]
+                    }
+                    Transform {
+                      translation 0 0 0.03
+                      children [
+                        Shape {
+                          appearance DEF VERDE Appearance {
+                            material Material {
+                              diffuseColor 0.0627451 0.8 0.00784314
+                            }
+                          }
+                          geometry Box {
+                            size 0.01 0.1 0.02
+                          }
+                        }
+                      ]
+                    }
+                    Shape {
+                      appearance DEF VERDE Appearance {
+                        material Material {
+                          diffuseColor 0.0627451 0.8 0.00784314
+                        }
+                      }
+                      geometry Box {
+                        size 0.01 0.01 0.06
+                      }
+                    }
+                  ]
                 }
               ]
               name "solid(1)"
-              boundingObject USE WHEEL1
+              boundingObject USE agarre
               physics Physics {
               }
             }
@@ -88,9 +142,8 @@ Robot {
                 diffuseColor 0.0627451 0.8 0.00784314
               }
             }
-            geometry DEF RUEDA Cylinder {
-              height 0.06
-              radius 0.01
+            geometry Box {
+              size 0.01 0.01 0.08
             }
           }
         ]
@@ -182,6 +235,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
+        position 2.7839998051977446
         axis 0 1 0
         anchor 0 0.06 0
       }
@@ -191,8 +245,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -1.1080672103182769e-05 0.059999999088792 1.4873936462698515e-06
-        rotation 0.9999989623496791 -0.0010186511674729608 0.0010186507568264538 1.5708010511070156
+        translation 1.0900350005461507e-05 0.059999999088792 2.485156710481675e-06
+        rotation 0.12748818753946656 0.7013355596845227 -0.7013381458040757 2.8879852781052273
         children [
           DEF WHEEL1 Shape {
             appearance DEF VERDE Appearance {
@@ -214,6 +268,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
+        position 2.7839997959369582
         axis 0 1 0
         anchor 0 -0.06 0
       }
@@ -223,8 +278,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -1.1092999999999997e-05 -0.06 2.2476799999999974e-06
-        rotation -0.9999994483713285 0.000742718442609676 -0.0007427155268675285 4.712384742679209
+        translation 1.1178013759126461e-05 -0.06 1.7772796018576949e-06
+        rotation -0.12729152358771 -0.7013534204189562 0.7013560063828856 3.3948129858172704
         children [
           DEF WHEEL2 Shape {
             appearance USE VERDE
@@ -388,16 +443,16 @@ Solid {
   boundingObject USE TRONCO
 }
 Solid {
-  translation 0.41 -0.06 0.03
+  translation 0.41 -0.05999999999999999 0.024903891496521894
+  rotation 0.6626387917863038 -0.7454686407595857 -0.07201622917123052 2.83894370397396e-16
   children [
     DEF objetivo Shape {
       appearance PBRAppearance {
-        baseColor 0.666667 0 0
-        roughness 1
+        baseColor 0 1 0
         metalness 0
       }
       geometry Box {
-        size 0.1 0.1 0.05
+        size 0.07 0.07 0.05
       }
     }
   ]

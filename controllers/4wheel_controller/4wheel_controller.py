@@ -4,7 +4,7 @@ robot = Robot()
 TIME_STEP = int(robot.getBasicTimeStep())
 
 gps = robot.getDevice('gps')
-gps.enable(100)
+gps.enable(50)
 
 
 ds = []
@@ -26,14 +26,58 @@ for i in range(2):
 
 avoidObstacleCounter = 0
 
+brazo = []
+brazoNames = ['brazo', 'brazo_agarre']
+for i in range(2):
+    brazo.append(robot.getDevice(brazoNames[i]))
+    brazo[i].setPosition(float('inf'))
+    brazo[i].setVelocity(0.0)
 
-brazo = robot.getDevice('brazo')
-brazo.setPosition(float('inf'))
-brazo.setVelocity(0.0)
-brazoa = robot.getDevice('brazo_agarre')
-brazoa.setPosition(float('inf'))
-brazoa.setVelocity(0.0)
-
+def activarBrazo():
+    armSpeed = -1.0
+    for i in range(50):
+        robot.step(TIME_STEP)
+        brazo[0].setVelocity(armSpeed)
+        
+    brazo[0].setVelocity(0)
+    
+    for i in range(40):
+        robot.step(TIME_STEP)
+        brazo[1].setVelocity(armSpeed)
+        
+    brazo[1].setVelocity(0)
+    
+# Comportamiento: Llevar objetivo
+def llevarObjetivo():
+    #Primer paso: retroceder un poco
+    leftSpeed = -1.0
+    rightSpeed = -1.0
+    
+    for i in range (30):
+        robot.step(TIME_STEP)
+        wheels[0].setVelocity(leftSpeed)
+        wheels[1].setVelocity(rightSpeed)
+    
+    #Segundo paso: girar 180 grados
+    leftSpeed = 1.0
+    for i in range (170):
+        robot.step(TIME_STEP)
+        wheels[0].setVelocity(leftSpeed)
+        wheels[1].setVelocity(rightSpeed)
+    
+    #Tercer paso: retroceder un poco
+    leftSpeed = -1.0
+    for i in range (30):
+        robot.step(TIME_STEP)
+        wheels[0].setVelocity(leftSpeed)
+        wheels[1].setVelocity(rightSpeed)
+    
+    #Cuarto Paso: Frenar
+    wheels[0].setVelocity(0)
+    wheels[1].setVelocity(0)
+    #Quinto paso: agarrar el objetivo
+    activarBrazo()
+        
 # Comportamiento: Evitar obstaculos
 def avoidObstacle():
     # Detecta a que lado es conveniente rotar
@@ -77,8 +121,10 @@ def probarObjetivo():
     dif = (pos_inicial[0] - pos_actual[0])
     if dif < 0.01 and dif > -0.01:
         print("no se movio")
+        avoidObstacle()
     else:
         print("si se movio")
+        llevarObjetivo()
     
 def volverOrigen():
     pos = gps.getValues()
@@ -102,10 +148,12 @@ while robot.step(TIME_STEP) != -1:
     if ds[2].getValue() < 950.0:
         # Llamada a método que evita obstaculos
         avoidObstacle()
+    # Sensores de distancia detectan objetivo
     elif (valor_izq < 20) and (valor_der < 20):
         probarObjetivo()
     elif (valor_izq - valor_der) < 100 and (valor_izq - valor_der) > -100:
         pass
+    #Sensores de distancia detectan algo
     elif valor_izq < 950.0 or valor_der < 950.0:
         orientar()
     
