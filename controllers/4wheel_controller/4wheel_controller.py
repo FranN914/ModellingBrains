@@ -1,5 +1,5 @@
 from controller import Robot, Motor, GPS
-
+from math import dist, acos, degrees
 robot = Robot()
 TIME_STEP = int(robot.getBasicTimeStep())
 
@@ -32,20 +32,70 @@ for i in range(2):
     brazo.append(robot.getDevice(brazoNames[i]))
     brazo[i].setPosition(float('inf'))
     brazo[i].setVelocity(0.0)
-
-def activarBrazo():
-    armSpeed = -1.0
-    for i in range(50):
-        robot.step(TIME_STEP)
-        brazo[0].setVelocity(armSpeed)
-        
-    brazo[0].setVelocity(0)
     
-    for i in range(40):
+
+
+def ubicacionZona():
+    pos = gps.getValues()
+    if (pos[0] > -1.25 and pos[0] < -0.75):
+        if (pos[1] < 0.25 and pos[1] > -0.25):
+            return True
+        else:
+            return False
+    else:
+        return False
+
+def gg():
+    pos1 = gps.getValues()
+    for i in range (15):
         robot.step(TIME_STEP)
-        brazo[1].setVelocity(armSpeed)
+        wheels[0].setVelocity(1.0)
+        wheels[1].setVelocity(1.0)
+    pos2 = gps.getValues()
+    a = (pos1[0],pos1[1])
+    b = (pos2[0],pos2[1])
+    c = (-1, 0)
+    x = dist(a,b)
+    y = dist(b,c)
+    z = dist(c,a)
+    print(x)
+    print(y)
+    print(z)
+    angulo = degrees(acos((x * x + y * z - z * z)/(2.0 * x * y)))
+    print(angulo)
+    cor = 180 - angulo
+    for i in range (int(cor)):
+        robot.step(TIME_STEP)
+        wheels[0].setVelocity(-1.0)
+        wheels[1].setVelocity(1.0)
+    
+def activarBrazo(brazoEstirado):
+    if(brazoEstirado):
+        armSpeed = -1.0
+        for i in range(50):
+            robot.step(TIME_STEP)
+            brazo[0].setVelocity(armSpeed)
+            
+        brazo[0].setVelocity(0)
         
-    brazo[1].setVelocity(0)
+        for i in range(40):
+            robot.step(TIME_STEP)
+            brazo[1].setVelocity(armSpeed)
+            
+        brazo[1].setVelocity(0)
+    else:
+        armSpeed = 1.0
+        for i in range(40):
+            robot.step(TIME_STEP)
+            brazo[1].setVelocity(armSpeed)
+            
+        brazo[1].setVelocity(0)
+        
+        for i in range(50):
+            robot.step(TIME_STEP)
+            brazo[0].setVelocity(armSpeed)
+            
+        brazo[0].setVelocity(0)
     
 # Comportamiento: Llevar objetivo
 def llevarObjetivo():
@@ -76,7 +126,8 @@ def llevarObjetivo():
     wheels[0].setVelocity(0)
     wheels[1].setVelocity(0)
     #Quinto paso: agarrar el objetivo
-    activarBrazo()
+    activarBrazo(True)
+    gg()
         
 # Comportamiento: Evitar obstaculos
 def avoidObstacle():
@@ -125,17 +176,7 @@ def probarObjetivo():
     else:
         print("si se movio")
         llevarObjetivo()
-    
-def volverOrigen():
-    pos = gps.getValues()
-    if (pos[0] < 0.5 and pos[0] > -0.5):
-        if (pos[1] < 0.5 and pos[1] > -0.5):
-            return True
-        else:
-            return False
-    else:
-        return False
-
+brazoEstirado = True
 # Bucle principal
 while robot.step(TIME_STEP) != -1:
     # Comportamiento: Deambular
