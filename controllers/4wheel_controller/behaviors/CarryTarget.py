@@ -1,7 +1,21 @@
 from .armcontroller import ArmState
 from math import dist, acos, degrees
 
-def gg(robot, gps, wheels, TIME_STEP):
+def izquierda( p1, p2, pp):
+    pendiente = (p1[1] - p2[1]) / (p1[0] - p2[0])
+    ter_ind = (pendiente * -1) * p1[0] + p1[1]
+    
+def estaOrigen(gps):
+    pos = gps.getValues()                       # Se obtienen los valores que otorga el gps
+    if (pos[0] > -1.25 and pos[0] < -0.75):
+        if (pos[1] < 0.25 and pos[1] > -0.25):
+            return True
+        else:
+            return False
+    else:
+        return False
+
+def orientarOrigen(robot, gps, wheels, TIME_STEP):
     pos1 = gps.getValues()
 
     for i in range (15):
@@ -11,21 +25,26 @@ def gg(robot, gps, wheels, TIME_STEP):
 
     pos2 = gps.getValues()
     a = (pos1[0],pos1[1])
+    print(a)
     b = (pos2[0],pos2[1])
+    print(b)
     c = (-1, 0)
     x = dist(a,b)
     y = dist(b,c)
     z = dist(c,a)
-    print(x)
-    print(y)
-    print(z)
     angulo = degrees(acos((x * x + y * z - z * z)/(2.0 * x * y)))
-    print(angulo)
-    cor = 180 - angulo
-    for i in range (int(cor)):
-        robot.step(TIME_STEP)
-        wheels[0].setVelocity(-1.0)
-        wheels[1].setVelocity(1.0)
+    cor = (180 - angulo) /2
+    print(cor)
+    if(pos1[1] > pos2[1]):
+        for i in range (int(cor)):
+            robot.step(TIME_STEP)
+            wheels[0].setVelocity(1.0)
+            wheels[1].setVelocity(-1.0)
+    else:
+        for i in range (int(cor)):
+            robot.step(TIME_STEP)
+            wheels[0].setVelocity(-1.0)
+            wheels[1].setVelocity(1.0)
 
 # Comportamiento: Llevar objetivo
 def llevarObjetivo(robot, gps, wheels, brazo, TIME_STEP):
@@ -58,4 +77,11 @@ def llevarObjetivo(robot, gps, wheels, brazo, TIME_STEP):
 
     # Quinto paso: agarrar el objetivo
     ArmState.activarBrazo(True, robot, brazo, TIME_STEP)  # Toma el objetivo con el brazo
-    gg(robot, gps, wheels, TIME_STEP)
+    while(not estaOrigen(gps)):
+        orientarOrigen(robot, gps, wheels, TIME_STEP)
+        for i in range(30):
+            robot.step(TIME_STEP)
+            wheels[0].setVelocity(1.0)
+            wheels[1].setVelocity(1.0)
+            
+    ArmState.activarBrazo(False, robot, brazo, TIME_STEP)

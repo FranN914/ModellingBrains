@@ -15,8 +15,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.20528375304452334 0.1041312272403782 -0.9731470948676607 2.224495479886156
-  position 0.9180726569544342 1.041086444682545 0.9098184937146336
+  orientation 0.4596364758242076 -0.03479693843044991 -0.8874251986324089 3.275750556175865
+  position 3.688272040364694 -0.09044511983357688 5.290756634171268
 }
 TexturedBackground {
 }
@@ -66,7 +66,7 @@ Robot {
             ]
             endPoint Solid {
               translation 4.8005830760274314e-06 3.220740111300017e-07 0.06999669191592135
-              rotation -0.0002053618541507654 0.9999999786217285 -2.4146453644783802e-05 0.00013307953682042454
+              rotation -0.0002053618541507026 0.9999999786217285 -2.414645364477637e-05 0.00013307953682042454
               children [
                 DEF agarre Group {
                   children [
@@ -456,6 +456,112 @@ Solid {
       }
     }
   ]
+  boundingObject USE objetivo
+  physics Physics {
+  }
+}
+Solid {
+  translation -1 0 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.5 0.5 0.01
+      }
+    }
+  ]
+  name "plataforma"
+}
+Solid {
+  translation 0.41 -0.91 0.0249039
+  rotation 0.6626387917863038 -0.7454686407595857 -0.07201622917123052 2.83894370397396e-16
+  children [
+    DEF objetivo Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.07 0.07 0.05
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE objetivo
+  physics Physics {
+  }
+}
+Solid {
+  translation -0.21 -0.56 0.0249039
+  rotation 0.6626387917863038 -0.7454686407595857 -0.07201622917123052 2.83894370397396e-16
+  children [
+    DEF objetivo Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.07 0.07 0.05
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE objetivo
+  physics Physics {
+  }
+}
+Solid {
+  translation 0.41 0.72 0.0249039
+  rotation 0.6626387917863038 -0.7454686407595857 -0.07201622917123052 2.83894370397396e-16
+  children [
+    DEF objetivo Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.07 0.07 0.05
+      }
+    }
+  ]
+  name "solid(3)"
+  boundingObject USE objetivo
+  physics Physics {
+  }
+}
+Solid {
+  translation 1.09 -0.06 0.0249039
+  rotation 0.6626387917863038 -0.7454686407595857 -0.07201622917123052 2.83894370397396e-16
+  children [
+    DEF objetivo Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.07 0.07 0.05
+      }
+    }
+  ]
+  name "solid(4)"
+  boundingObject USE objetivo
+  physics Physics {
+  }
+}
+Solid {
+  translation 0.9 0.41 0.0249039
+  rotation 0.6626387917863038 -0.7454686407595857 -0.07201622917123052 2.83894370397396e-16
+  children [
+    DEF objetivo Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.07 0.07 0.05
+      }
+    }
+  ]
+  name "solid(5)"
   boundingObject USE objetivo
   physics Physics {
   }

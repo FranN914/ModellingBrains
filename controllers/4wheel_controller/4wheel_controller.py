@@ -47,21 +47,6 @@ for i in range(2):
     brazo[i].setPosition(float('inf'))
     brazo[i].setVelocity(0.0)
 
-### Fin de la declaracion de variables ###
-
-
-''' Este metodo podria borrarse porque no se utiliza nunca
-def ubicacionZona():
-    pos = gps.getValues()                       # Se obtienen los valores que otorga el gps
-    if (pos[0] > -1.25 and pos[0] < -0.75):
-        if (pos[1] < 0.25 and pos[1] > -0.25):
-            return True
-        else:
-            return False
-    else:
-        return False
-'''
-
 # Bucle principal
 while robot.step(TIME_STEP) != -1:
     # Comportamiento: Deambular
