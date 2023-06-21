@@ -1,5 +1,5 @@
 from controller import Robot, Motor, GPS
-from behaviors import AvoidObstacle, TestTarget, OrientBody
+from behaviors import AvoidObstacle, TestTarget, OrientBody, CarryTarget
 
 ### Comienzo de la declaracion de variables ###
 
@@ -47,6 +47,9 @@ for i in range(2):
     brazo[i].setPosition(float('inf'))
     brazo[i].setVelocity(0.0)
 
+# Se obtiene el sensor de contacto
+sc = robot.getDevice("touch sensor")
+sc.enable(50)
 # Bucle principal
 while robot.step(TIME_STEP) != -1:
     # Comportamiento: Deambular
@@ -55,13 +58,14 @@ while robot.step(TIME_STEP) != -1:
     
     valor_izq = ds[0].getValue()
     valor_der = ds[1].getValue()
-
     # Sensor de altura detecta algo
     if ds[2].getValue() < 950.0:
         # Llamada a método que evita obstaculos
         AvoidObstacle.evitarObstaculo(robot, wheels, ds, TIME_STEP)
-    # Sensores de distancia detectan objetivo
-    elif (valor_izq < 20) and (valor_der < 20):
+    elif CarryTarget.estaOrigen(gps):
+        pass
+    # Sensor de contacto detectan objetivo
+    elif sc.getValue() > 0:
         TestTarget.probarObjetivo(robot, gps, wheels, ds, brazo, TIME_STEP)
     elif (valor_izq - valor_der) < 100 and (valor_izq - valor_der) > -100:
         pass

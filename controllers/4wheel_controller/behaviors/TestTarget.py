@@ -11,8 +11,11 @@ def probarObjetivo(robot, gps, wheels, ds, brazo, TIME_STEP):
         wheels[1].setVelocity(1.0)
 
     pos_actual = gps.getValues()
-    dif = (pos_inicial[0] - pos_actual[0])
-    if dif < 0.01 and dif > -0.01:
+    difx = (pos_inicial[0] - pos_actual[0])
+    dify = (pos_inicial[1] - pos_actual[1])
+    if (difx < 0.005 and difx > -0.005) and (dify < 0.005 and dify > -0.005):
+        print(difx)
+        print(dify)
         print("no se movio")
         AvoidObstacle.evitarObstaculo(robot, wheels, ds, TIME_STEP)
     else:

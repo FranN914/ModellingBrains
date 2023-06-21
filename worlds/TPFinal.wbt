@@ -15,32 +15,32 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.4596364758242076 -0.03479693843044991 -0.8874251986324089 3.275750556175865
-  position 3.688272040364694 -0.09044511983357688 5.290756634171268
+  orientation -0.19916371790764745 -0.7345632615377071 0.648652933600311 5.491358683249024
+  position -4.350912111295697 2.462771935247314 3.5903840282840394
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
-Floor {
-  size 4 4
-  appearance PBRAppearance {
-    baseColorMap ImageTexture {
-      url [
-        "Grass_Sprite.png"
-      ]
-    }
-    roughness 1
-    metalness 0
-  }
-}
 Robot {
-  translation 0.10996805173136215 -1.7074898345295667e-07 0.03959752629435106
-  rotation -0.0019170312462347744 -0.9999968283343318 -0.001633497008807273 0.0022818433056824815
+  translation 0.10996384434132739 -2.1117428514783667e-07 0.039597194138272264
+  rotation -0.001407675331007267 -0.999997788729026 -0.0015623659049540863 0.0023873798655989127
   children [
+    TouchSensor {
+      boundingObject DEF CUERPO_BOT Shape {
+        appearance Appearance {
+          material Material {
+            diffuseColor 0.8 0 0
+          }
+        }
+        geometry Box {
+          size 0.11 0.1 0.07
+        }
+      }
+    }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 9.032038639064568e-08
+        position 1.184112280207054e-07
         axis 0 1 0
         anchor -0.04 0 0.03
       }
@@ -50,14 +50,14 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.029999996387049102 0 0.07000149909679597
-        rotation 0 1 0 8.940696716308595e-08
+        translation -0.029985096841261074 -2.75415490663677e-07 0.07003389472574514
+        rotation -0.00020164033955214354 0.9999999665900638 0.00016174376245700896 0.00013457763614358733
         children [
           HingeJoint {
             jointParameters HingeJointParameters {
-              position -1.5316134877337812e-09
+              position -1.3611837125998754e-08
               axis 0 1 0
-              anchor 0 0 0.04
+              anchor 0 0 0.05
             }
             device [
               RotationalMotor {
@@ -65,14 +65,14 @@ Robot {
               }
             ]
             endPoint Solid {
-              translation 4.8005830760274314e-06 3.220740111300017e-07 0.06999669191592135
-              rotation -0.0002053618541507026 0.9999999786217285 -2.414645364477637e-05 0.00013307953682042454
+              translation 5.956197506326323e-06 -3.30941e-07 0.07999689999972731
+              rotation -0.00020446987668002438 0.9999999787987665 -2.4383105519500117e-05 0.00013306745291873074
               children [
                 DEF agarre Group {
                   children [
                     Transform {
                       translation -0.0150004 0.0486603 0.03
-                      rotation 0 0 1 1.5708
+                      rotation 0 0 1 -2.0944
                       children [
                         Shape {
                           appearance DEF VERDE Appearance {
@@ -81,14 +81,14 @@ Robot {
                             }
                           }
                           geometry Box {
-                            size 0.01 0.02 0.02
+                            size 0.01 0.04 0.02
                           }
                         }
                       ]
                     }
                     Transform {
                       translation -0.0150001 -0.0513397 0.03
-                      rotation 0 0 1 1.5708
+                      rotation 0 0 1 2.0944
                       children [
                         Shape {
                           appearance DEF VERDE Appearance {
@@ -97,7 +97,7 @@ Robot {
                             }
                           }
                           geometry Box {
-                            size 0.01 0.02 0.02
+                            size 0.01 0.04 0.02
                           }
                         }
                       ]
@@ -112,7 +112,7 @@ Robot {
                             }
                           }
                           geometry Box {
-                            size 0.01 0.1 0.02
+                            size 0.01 0.09 0.02
                           }
                         }
                       ]
@@ -143,7 +143,7 @@ Robot {
               }
             }
             geometry Box {
-              size 0.01 0.01 0.08
+              size 0.01 0.01 0.1
             }
           }
         ]
@@ -235,7 +235,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 2.7839998051977446
+        position 2.7839998058295814
         axis 0 1 0
         anchor 0 0.06 0
       }
@@ -245,8 +245,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 1.0900350005461507e-05 0.059999999088792 2.485156710481675e-06
-        rotation 0.12748818753946656 0.7013355596845227 -0.7013381458040757 2.8879852781052273
+        translation 1.090035000703172e-05 0.059999999088792 2.485156703594434e-06
+        rotation 0.1274881873142998 0.701335559704988 -0.701338145824541 2.887985278548357
         children [
           DEF WHEEL1 Shape {
             appearance DEF VERDE Appearance {
@@ -268,7 +268,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 2.7839997959369582
+        position 2.7839997965490775
         axis 0 1 0
         anchor 0 -0.06 0
       }
@@ -278,8 +278,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 1.1178013759126461e-05 -0.06 1.7772796018576949e-06
-        rotation -0.12729152358771 -0.7013534204189562 0.7013560063828856 3.3948129858172704
+        translation 1.1178013760214361e-05 -0.06 1.7772795950154203e-06
+        rotation -0.12729152336957528 -0.7013534204387513 0.7013560064026807 3.3948129853879583
         children [
           DEF WHEEL2 Shape {
             appearance USE VERDE
@@ -302,267 +302,737 @@ Robot {
   }
   controller "4wheel_controller"
 }
-Solid {
-  translation -1.96 0 0.24
+DEF Objetivos Group {
   children [
-    DEF PARED Shape {
-      appearance DEF AZUL PBRAppearance {
-        baseColor 0 0 0.498039
-        roughness 1
-        metalness 0
-      }
-      geometry DEF PARED Box {
-        size 0.1 4 0.5
-      }
-    }
-  ]
-  name "pared1"
-  boundingObject USE PARED
-}
-Solid {
-  translation 1.96 0 0.24
-  children [
-    DEF PARED Shape {
-      appearance DEF AZUL PBRAppearance {
-        baseColor 0 0 0.498039
-        roughness 1
-        metalness 0
-      }
-      geometry DEF PARED Box {
-        size 0.1 4 0.5
-      }
-    }
-  ]
-  name "pared2"
-  boundingObject USE PARED
-}
-Solid {
-  translation -6.74634e-14 -2.01 0.24
-  rotation 0 0 1 1.5708
-  children [
-    DEF PARED Shape {
-      appearance DEF AZUL PBRAppearance {
-        baseColor 0 0 0.498039
-        roughness 1
-        metalness 0
-      }
-      geometry DEF PARED Box {
-        size 0.1 4 0.5
-      }
-    }
-  ]
-  name "pared3"
-  boundingObject USE PARED
-}
-Solid {
-  translation 0.01 1.98 0.24
-  rotation 0 0 1 -1.5707953071795862
-  children [
-    DEF PARED Shape {
-      appearance DEF AZUL PBRAppearance {
-        baseColor 0 0 0.498039
-        roughness 1
-        metalness 0
-      }
-      geometry DEF PARED Box {
-        size 0.1 4 0.5
-      }
-    }
-  ]
-  name "pared4"
-  boundingObject USE PARED
-}
-Solid {
-  translation 0 1.08 0.2
-  children [
-    Group {
+    Solid {
+      translation 0.41 -0.05999999999999999 0.024845962021429007
+      rotation -0.5352154756571227 -0.04849581496052363 -0.8433223289753654 1.3533169387805497e-16
       children [
-        Transform {
-          translation 0 0 0.3
-          children [
-            Shape {
-              appearance DEF VERDE PBRAppearance {
-                baseColor 0.0352941 0.482353 0.0352941
-                roughness 1
-                metalness 0
-              }
-              geometry DEF HOJAS Cone {
-                bottomRadius 0.16
-                height 0.2
-              }
-            }
-          ]
-        }
-        Transform {
-          translation 0 0 0.2
-          children [
-            Shape {
-              appearance DEF VERDE PBRAppearance {
-                baseColor 0.0352941 0.482353 0.0352941
-                roughness 1
-                metalness 0
-              }
-              geometry DEF HOJAS Cone {
-                bottomRadius 0.16
-                height 0.2
-              }
-            }
-          ]
-        }
-        Transform {
-          translation 0 0 0.1
-          children [
-            Shape {
-              appearance DEF VERDE PBRAppearance {
-                baseColor 0.0352941 0.482353 0.0352941
-                roughness 1
-                metalness 0
-              }
-              geometry DEF HOJAS Cone {
-                bottomRadius 0.16
-                height 0.2
-              }
-            }
-          ]
-        }
-        DEF TRONCO Shape {
+        DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0.341176 0.207843 0.0235294
-            roughness 1
+            baseColor 0 1 0
             metalness 0
           }
           geometry Cylinder {
-            height 0.4
-            radius 0.05
+            height 0.05
+            radius 0.04
           }
         }
       ]
+      boundingObject USE objetivo
+      physics Physics {
+      }
+    }
+    Solid {
+      translation 0.41 -0.91 0.024903862037516378
+      rotation -0.46743439117756547 0.5842929889719662 -0.6634054514267006 2.0122548334660066e-16
+      children [
+        DEF objetivo Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.05
+          }
+        }
+      ]
+      name "solid(1)"
+      boundingObject USE objetivo
+      physics Physics {
+      }
+    }
+    Solid {
+      translation -0.21 -0.56 0.024903862037516378
+      rotation 0.8170572129755311 -0.5447048086503393 -0.1889819625198522 8.634007796864398e-17
+      children [
+        DEF objetivo Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.05
+          }
+        }
+      ]
+      name "solid(2)"
+      boundingObject USE objetivo
+      physics Physics {
+      }
+    }
+    Solid {
+      translation 0.41 0.72 0.024903861999999992
+      rotation 6.709429776377697e-14 -0.24918816856814696 0.9684550875728067 2.830984467621831e-16
+      children [
+        DEF objetivo Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.05
+          }
+        }
+      ]
+      name "solid(3)"
+      boundingObject USE objetivo
+      physics Physics {
+      }
+    }
+    Solid {
+      translation 1.09 -0.06 0.024903862037516374
+      rotation 0.24118874802527182 -0.9647549921010543 -0.105241593688505 1.9499191414949138e-16
+      children [
+        DEF objetivo Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.05
+          }
+        }
+      ]
+      name "solid(4)"
+      boundingObject USE objetivo
+      physics Physics {
+      }
+    }
+    Solid {
+      translation 0.9 0.41 0.024903862037516378
+      rotation 0.987209043501794 -1.0349418057904856e-16 -0.15943119026173422 2.3819603334438274e-16
+      children [
+        DEF objetivo Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.05
+          }
+        }
+      ]
+      name "solid(5)"
+      boundingObject USE objetivo
+      physics Physics {
+      }
+    }
+    Solid {
+      translation 1.44 -1.67 0.0249039
+      rotation 0.987209043501794 -1.0349418057904856e-16 -0.15943119026173422 2.3819603334438274e-16
+      children [
+        DEF objetivo Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.05
+          }
+        }
+      ]
+      name "solid(6)"
+      boundingObject USE objetivo
+      physics Physics {
+      }
+    }
+    Solid {
+      translation 0.81 -1.67 0.0249039
+      rotation 0.987209043501794 -1.0349418057904856e-16 -0.15943119026173422 2.3819603334438274e-16
+      children [
+        DEF objetivo Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.05
+          }
+        }
+      ]
+      name "solid(7)"
+      boundingObject USE objetivo
+      physics Physics {
+      }
+    }
+    Solid {
+      translation 1.44 0.94 0.0249039
+      rotation 0.987209043501794 -1.0349418057904856e-16 -0.15943119026173422 2.3819603334438274e-16
+      children [
+        DEF objetivo Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.05
+          }
+        }
+      ]
+      name "solid(8)"
+      boundingObject USE objetivo
+      physics Physics {
+      }
+    }
+    Solid {
+      translation -0.34 -1.43 0.0249039
+      rotation 0.987209043501794 -1.0349418057904856e-16 -0.15943119026173422 2.3819603334438274e-16
+      children [
+        DEF objetivo Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.05
+          }
+        }
+      ]
+      name "solid(9)"
+      boundingObject USE objetivo
+      physics Physics {
+      }
+    }
+    Solid {
+      translation -0.5 1.21 0.0249039
+      rotation 0.987209043501794 -1.0349418057904856e-16 -0.15943119026173422 2.3819603334438274e-16
+      children [
+        DEF objetivo Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.05
+          }
+        }
+      ]
+      name "solid(10)"
+      boundingObject USE objetivo
+      physics Physics {
+      }
     }
   ]
-  name "arbol1"
-  boundingObject USE TRONCO
 }
-Solid {
-  translation 0.41 -0.05999999999999999 0.024903891496521894
-  rotation 0.6626387917863038 -0.7454686407595857 -0.07201622917123052 2.83894370397396e-16
+DEF Obstaculos Group {
   children [
-    DEF objetivo Shape {
+    Solid {
+      translation 0 1.08 0.2
+      children [
+        Group {
+          children [
+            Transform {
+              translation 0 0 0.3
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0 0.2
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0 0.1
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            DEF TRONCO Shape {
+              appearance PBRAppearance {
+                baseColor 0.341176 0.207843 0.0235294
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.4
+                radius 0.05
+              }
+            }
+          ]
+        }
+      ]
+      name "arbol1"
+      boundingObject USE TRONCO
+    }
+    Solid {
+      translation 1.04 -0.52 0.2
+      children [
+        Group {
+          children [
+            Transform {
+              translation 0 0 0.3
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0 0.2
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0 0.1
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            DEF TRONCO Shape {
+              appearance PBRAppearance {
+                baseColor 0.341176 0.207843 0.0235294
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.4
+                radius 0.05
+              }
+            }
+          ]
+        }
+      ]
+      name "arbol1(2)"
+      boundingObject USE TRONCO
+    }
+    Solid {
+      translation 0 -1.05 0.2
+      children [
+        Group {
+          children [
+            Transform {
+              translation 0 0 0.3
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0 0.2
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0 0.1
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            DEF TRONCO Shape {
+              appearance PBRAppearance {
+                baseColor 0.341176 0.207843 0.0235294
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.4
+                radius 0.05
+              }
+            }
+          ]
+        }
+      ]
+      name "arbol1(1)"
+      boundingObject USE TRONCO
+    }
+    Solid {
+      translation -1.05 1.08 0.2
+      children [
+        Group {
+          children [
+            Transform {
+              translation 0 0 0.3
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0 0.2
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0 0.1
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            DEF TRONCO Shape {
+              appearance PBRAppearance {
+                baseColor 0.341176 0.207843 0.0235294
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.4
+                radius 0.05
+              }
+            }
+          ]
+        }
+      ]
+      name "arbol1(3)"
+      boundingObject USE TRONCO
+    }
+    Solid {
+      translation -1.12 -1.01 0.2
+      children [
+        Group {
+          children [
+            Transform {
+              translation 0 0 0.3
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0 0.2
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0 0.1
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            DEF TRONCO Shape {
+              appearance PBRAppearance {
+                baseColor 0.341176 0.207843 0.0235294
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.4
+                radius 0.05
+              }
+            }
+          ]
+        }
+      ]
+      name "arbol1(4)"
+      boundingObject USE TRONCO
+    }
+    Solid {
+      translation 1.27 1.44 0.2
+      children [
+        Group {
+          children [
+            Transform {
+              translation 0 0 0.3
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0 0.2
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0 0.1
+              children [
+                Shape {
+                  appearance DEF VERDE PBRAppearance {
+                    baseColor 0.0352941 0.482353 0.0352941
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF HOJAS Cone {
+                    bottomRadius 0.16
+                    height 0.2
+                  }
+                }
+              ]
+            }
+            DEF TRONCO Shape {
+              appearance PBRAppearance {
+                baseColor 0.341176 0.207843 0.0235294
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.4
+                radius 0.05
+              }
+            }
+          ]
+        }
+      ]
+      name "arbol1(5)"
+      boundingObject USE TRONCO
+    }
+  ]
+}
+DEF Area Group {
+  children [
+    Solid {
+      translation -1.96 0 0.24
+      children [
+        DEF PARED Shape {
+          appearance DEF AZUL PBRAppearance {
+            baseColor 0 0 0.498039
+            roughness 1
+            metalness 0
+          }
+          geometry DEF PARED Box {
+            size 0.1 4 0.5
+          }
+        }
+      ]
+      name "pared1"
+      boundingObject USE PARED
+    }
+    Solid {
+      translation 1.96 0 0.24
+      children [
+        DEF PARED Shape {
+          appearance DEF AZUL PBRAppearance {
+            baseColor 0 0 0.498039
+            roughness 1
+            metalness 0
+          }
+          geometry DEF PARED Box {
+            size 0.1 4 0.5
+          }
+        }
+      ]
+      name "pared2"
+      boundingObject USE PARED
+    }
+    Solid {
+      translation -6.74634e-14 -2.01 0.24
+      rotation 0 0 1 1.5708
+      children [
+        DEF PARED Shape {
+          appearance DEF AZUL PBRAppearance {
+            baseColor 0 0 0.498039
+            roughness 1
+            metalness 0
+          }
+          geometry DEF PARED Box {
+            size 0.1 4 0.5
+          }
+        }
+      ]
+      name "pared3"
+      boundingObject USE PARED
+    }
+    Solid {
+      translation 0.01 1.98 0.24
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF PARED Shape {
+          appearance DEF AZUL PBRAppearance {
+            baseColor 0 0 0.498039
+            roughness 1
+            metalness 0
+          }
+          geometry DEF PARED Box {
+            size 0.1 4 0.5
+          }
+        }
+      ]
+      name "pared4"
+      boundingObject USE PARED
+    }
+    Solid {
+      translation -1 0 0
+      children [
+        Shape {
+          geometry Box {
+            size 0.5 0.5 0.01
+          }
+        }
+      ]
+      name "plataforma"
+    }
+    Floor {
+      size 4 4
       appearance PBRAppearance {
-        baseColor 0 1 0
+        baseColorMap ImageTexture {
+          url [
+            "Grass_Sprite.png"
+          ]
+        }
+        roughness 1
         metalness 0
       }
-      geometry Box {
-        size 0.07 0.07 0.05
-      }
     }
   ]
-  boundingObject USE objetivo
-  physics Physics {
-  }
-}
-Solid {
-  translation -1 0 0
-  children [
-    Shape {
-      geometry Box {
-        size 0.5 0.5 0.01
-      }
-    }
-  ]
-  name "plataforma"
-}
-Solid {
-  translation 0.41 -0.91 0.0249039
-  rotation 0.6626387917863038 -0.7454686407595857 -0.07201622917123052 2.83894370397396e-16
-  children [
-    DEF objetivo Shape {
-      appearance PBRAppearance {
-        baseColor 0 1 0
-        metalness 0
-      }
-      geometry Box {
-        size 0.07 0.07 0.05
-      }
-    }
-  ]
-  name "solid(1)"
-  boundingObject USE objetivo
-  physics Physics {
-  }
-}
-Solid {
-  translation -0.21 -0.56 0.0249039
-  rotation 0.6626387917863038 -0.7454686407595857 -0.07201622917123052 2.83894370397396e-16
-  children [
-    DEF objetivo Shape {
-      appearance PBRAppearance {
-        baseColor 0 1 0
-        metalness 0
-      }
-      geometry Box {
-        size 0.07 0.07 0.05
-      }
-    }
-  ]
-  name "solid(2)"
-  boundingObject USE objetivo
-  physics Physics {
-  }
-}
-Solid {
-  translation 0.41 0.72 0.0249039
-  rotation 0.6626387917863038 -0.7454686407595857 -0.07201622917123052 2.83894370397396e-16
-  children [
-    DEF objetivo Shape {
-      appearance PBRAppearance {
-        baseColor 0 1 0
-        metalness 0
-      }
-      geometry Box {
-        size 0.07 0.07 0.05
-      }
-    }
-  ]
-  name "solid(3)"
-  boundingObject USE objetivo
-  physics Physics {
-  }
-}
-Solid {
-  translation 1.09 -0.06 0.0249039
-  rotation 0.6626387917863038 -0.7454686407595857 -0.07201622917123052 2.83894370397396e-16
-  children [
-    DEF objetivo Shape {
-      appearance PBRAppearance {
-        baseColor 0 1 0
-        metalness 0
-      }
-      geometry Box {
-        size 0.07 0.07 0.05
-      }
-    }
-  ]
-  name "solid(4)"
-  boundingObject USE objetivo
-  physics Physics {
-  }
-}
-Solid {
-  translation 0.9 0.41 0.0249039
-  rotation 0.6626387917863038 -0.7454686407595857 -0.07201622917123052 2.83894370397396e-16
-  children [
-    DEF objetivo Shape {
-      appearance PBRAppearance {
-        baseColor 0 1 0
-        metalness 0
-      }
-      geometry Box {
-        size 0.07 0.07 0.05
-      }
-    }
-  ]
-  name "solid(5)"
-  boundingObject USE objetivo
-  physics Physics {
-  }
 }

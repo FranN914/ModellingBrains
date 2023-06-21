@@ -1,9 +1,16 @@
 from .armcontroller import ArmState
 from math import dist, acos, degrees
 
-def izquierda( p1, p2, pp):
+def debajo( p1, p2, pp):
     pendiente = (p1[1] - p2[1]) / (p1[0] - p2[0])
     ter_ind = (pendiente * -1) * p1[0] + p1[1]
+    
+    valor_y = pendiente * pp[0] + ter_ind
+    
+    if(valor_y < pp[1]):
+        return False
+    else:
+        return True
     
 def estaOrigen(gps):
     pos = gps.getValues()                       # Se obtienen los valores que otorga el gps
@@ -18,34 +25,43 @@ def estaOrigen(gps):
 def orientarOrigen(robot, gps, wheels, TIME_STEP):
     pos1 = gps.getValues()
 
-    for i in range (15):
+    for i in range (30):
         robot.step(TIME_STEP)
         wheels[0].setVelocity(1.0)
         wheels[1].setVelocity(1.0)
 
     pos2 = gps.getValues()
     a = (pos1[0],pos1[1])
-    print(a)
     b = (pos2[0],pos2[1])
-    print(b)
     c = (-1, 0)
     x = dist(a,b)
     y = dist(b,c)
     z = dist(c,a)
     angulo = degrees(acos((x * x + y * z - z * z)/(2.0 * x * y)))
-    cor = (180 - angulo) /2
-    print(cor)
-    if(pos1[1] > pos2[1]):
-        for i in range (int(cor)):
-            robot.step(TIME_STEP)
-            wheels[0].setVelocity(1.0)
-            wheels[1].setVelocity(-1.0)
-    else:
+    cor = (180 - angulo) / 2
+    abajo = debajo(a,c,b)
+    izquierda = (pos2[0] < -1)
+
+    if(abajo and izquierda):
         for i in range (int(cor)):
             robot.step(TIME_STEP)
             wheels[0].setVelocity(-1.0)
             wheels[1].setVelocity(1.0)
-
+    elif(abajo and not izquierda):
+        for i in range (int(cor)):
+            robot.step(TIME_STEP)
+            wheels[0].setVelocity(1.0)
+            wheels[1].setVelocity(-1.0)
+    elif(not abajo and izquierda):
+        for i in range (int(cor)):
+            robot.step(TIME_STEP)
+            wheels[0].setVelocity(1.0)
+            wheels[1].setVelocity(-1.0)
+    else: 
+        for i in range (int(cor)):
+            robot.step(TIME_STEP)
+            wheels[0].setVelocity(-1.0)
+            wheels[1].setVelocity(1.0)
 # Comportamiento: Llevar objetivo
 def llevarObjetivo(robot, gps, wheels, brazo, TIME_STEP):
     # Primer paso: retroceder un poco
