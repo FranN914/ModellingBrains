@@ -86,7 +86,7 @@ def procesarColor(distancia, color):
             OrientBody.orientarCuerpo(robot, wheels, ds, TIME_STEP)
             wheels[0].setVelocity(1.0)
             wheels[1].setVelocity(1.0)
-        CarryTarget.llevarObjetivo(robot, gps, wheels, brazo, TIME_STEP)
+        CarryTarget.llevarObjetivo(robot, gps, wheels, brazo, ds, TIME_STEP)
     else:
         while(sc.getValue() < 1):
             robot.step(TIME_STEP)
@@ -108,7 +108,10 @@ while robot.step(TIME_STEP) != -1:
     valor_der = ds[1].getValue()
     v = ds[2].getValue()
     g = ds[3].getValue()
-    if g < 1000.0:
+    if CarryTarget.estaOrigen(gps):
+        if valor_izq < 950.0 or valor_der < 950.0:
+            AvoidObstacle.evitarObstaculosVarios(robot, wheels, ds, TIME_STEP)
+    elif g < 1000.0:
         if (v < 1000.0):
             if (v > 900.0):
                 procesarColor(g,v)

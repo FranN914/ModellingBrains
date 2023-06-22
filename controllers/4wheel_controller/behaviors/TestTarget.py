@@ -19,5 +19,5 @@ def probarObjetivo(robot, gps, wheels, ds, brazo, TIME_STEP):
         return False
     else:
         print("si se movio")
-        CarryTarget.llevarObjetivo(robot, gps, wheels, brazo, TIME_STEP)
+        CarryTarget.llevarObjetivo(robot, gps, wheels, brazo, ds, TIME_STEP)
         return True

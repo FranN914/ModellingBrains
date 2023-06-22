@@ -15,8 +15,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.24535700719601503 0.009566753213941178 0.9693855869842288 3.066045218600339
-  position 1.6710120378563107 0.16082321358884627 0.6779094434709081
+  orientation -0.6724789234229002 -0.027609066762527158 0.7396011337095687 3.2023078309835014
+  position 1.3265707410544636 -0.297938792474288 8.069517302515068
 }
 TexturedBackground {
 }
@@ -87,8 +87,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.02998509684126108 -2.75415490663668e-07 0.07003389472574506
-        rotation -0.00020164033942724643 0.9999999665900638 0.00016174376235682388 0.00013457761304446904
+        translation -0.02998509684126108 -2.754154906636676e-07 0.07003389472574506
+        rotation -0.00020164033942322255 0.9999999665900638 0.00016174376235359618 0.00013457761304446904
         children [
           HingeJoint {
             jointParameters HingeJointParameters {
@@ -102,8 +102,8 @@ Robot {
               }
             ]
             endPoint Solid {
-              translation 5.956197506328059e-06 -3.3094099999999947e-07 0.07999689999972737
-              rotation -0.00020446987673622145 0.9999999787987666 -2.4383105526201808e-05 0.00013306744958140664
+              translation 5.956197506328066e-06 -3.3094099999999947e-07 0.07999689999972737
+              rotation -0.0002044698767359624 0.9999999787987666 -2.4383105526170925e-05 0.00013306744958140664
               children [
                 DEF agarre Group {
                   children [
@@ -261,7 +261,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 1.0900350007031727e-05 0.059999999088792 2.4851567035944334e-06
+        translation 1.0900350007031734e-05 0.059999999088792 2.4851567035944343e-06
         rotation 0.12748818731430017 0.7013355597049884 -0.7013381458245406 2.8879852785483564
         children [
           DEF WHEEL1 Shape {
@@ -318,7 +318,7 @@ Robot {
   }
   controller "4wheel_controller"
 }
-DEF Objetivos Group {
+Group {
   children [
     Solid {
       translation 0.41 -0.59 0.024846
@@ -364,7 +364,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0.5 1 0
+            baseColor 1 1 0
             metalness 0
           }
           geometry Box {
@@ -374,8 +374,6 @@ DEF Objetivos Group {
       ]
       name "solid(2)"
       boundingObject USE objetivo
-      physics Physics {
-      }
     }
     Solid {
       translation 0.41 0.72 0.024903861999999992
@@ -402,7 +400,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0.5 1 0
+            baseColor 1 1 0
             metalness 0
           }
           geometry Box {
@@ -412,8 +410,6 @@ DEF Objetivos Group {
       ]
       name "solid(4)"
       boundingObject USE objetivo
-      physics Physics {
-      }
     }
     Solid {
       translation 0.9 0.41 0.024903862037516378
@@ -421,7 +417,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0.5 1 0
+            baseColor 1 1 0
             metalness 0
           }
           geometry Box {
@@ -478,7 +474,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0.5 1 0
+            baseColor 1 1 0
             metalness 0
           }
           geometry Box {
@@ -497,7 +493,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0.5 1 0
+            baseColor 1 1 0
             metalness 0
           }
           geometry Box {
@@ -511,7 +507,7 @@ DEF Objetivos Group {
       }
     }
     Solid {
-      translation -0.5 1.21 0.0249039
+      translation -0.5 1.29 0.0249039
       rotation 0.987209043501794 -1.0349418057904856e-16 -0.15943119026173422 2.3819603334438274e-16
       children [
         DEF objetivo Shape {
@@ -525,6 +521,61 @@ DEF Objetivos Group {
         }
       ]
       name "solid(10)"
+      boundingObject USE objetivo
+      physics Physics {
+      }
+    }
+    Solid {
+      translation 1.2 0 0.0249039
+      rotation 0.987209043501794 -1.0349418057904856e-16 -0.15943119026173422 2.3819603334438274e-16
+      children [
+        DEF objetivo Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.05
+          }
+        }
+      ]
+      name "solid(11)"
+      boundingObject USE objetivo
+    }
+    Solid {
+      translation 0.69 1.21 0.0249039
+      rotation 0.987209043501794 -1.0349418057904856e-16 -0.15943119026173422 2.3819603334438274e-16
+      children [
+        DEF objetivo Shape {
+          appearance PBRAppearance {
+            baseColor 0.5 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.05
+          }
+        }
+      ]
+      name "solid(12)"
+      boundingObject USE objetivo
+      physics Physics {
+      }
+    }
+    Solid {
+      translation -0.84 0.64 0.0249039
+      rotation 0.987209043501794 -1.0349418057904856e-16 -0.15943119026173422 2.3819603334438274e-16
+      children [
+        DEF objetivo Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.05
+          }
+        }
+      ]
+      name "solid(13)"
       boundingObject USE objetivo
       physics Physics {
       }

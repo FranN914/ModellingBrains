@@ -1,4 +1,5 @@
 from .armcontroller import ArmState
+from . import AvoidObstacle
 from math import dist, acos, degrees
 
 def debajo( p1, p2, pp):
@@ -38,7 +39,7 @@ def orientarOrigen(robot, gps, wheels, TIME_STEP):
     y = dist(b,c)
     z = dist(c,a)
     angulo = degrees(acos((x * x + y * z - z * z)/(2.0 * x * y)))
-    cor = (180 - angulo) / 2
+    cor = (180 - angulo) / 3
     abajo = debajo(a,c,b)
     izquierda = (pos2[0] < -1)
 
@@ -63,7 +64,7 @@ def orientarOrigen(robot, gps, wheels, TIME_STEP):
             wheels[0].setVelocity(-1.0)
             wheels[1].setVelocity(1.0)
 # Comportamiento: Llevar objetivo
-def llevarObjetivo(robot, gps, wheels, brazo, TIME_STEP):
+def llevarObjetivo(robot, gps, wheels, brazo, ds, TIME_STEP):
     # Primer paso: retroceder un poco
     leftSpeed = -1.0
     rightSpeed = -1.0
@@ -93,11 +94,16 @@ def llevarObjetivo(robot, gps, wheels, brazo, TIME_STEP):
 
     # Quinto paso: agarrar el objetivo
     ArmState.activarBrazo(True, robot, brazo, TIME_STEP)  # Toma el objetivo con el brazo
+    
+    # Sexto paso: dirigirse hacia la zona
     while(not estaOrigen(gps)):
         orientarOrigen(robot, gps, wheels, TIME_STEP)
+        if ds[0].getValue() < 950.0 or ds[1].getValue() < 950.0:
+            AvoidObstacle.evitarObstaculo(robot, wheels, ds, TIME_STEP)
         for i in range(30):
             robot.step(TIME_STEP)
             wheels[0].setVelocity(1.0)
             wheels[1].setVelocity(1.0)
-            
+    
+    # Septimo paso: soltar el objeto
     ArmState.activarBrazo(False, robot, brazo, TIME_STEP)
