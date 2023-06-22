@@ -1,8 +1,8 @@
 #VRML_SIM R2023a utf8
 
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 
 WorldInfo {
   contactProperties [
@@ -15,8 +15,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.19916371790764745 -0.7345632615377071 0.648652933600311 5.491358683249024
-  position -4.350912111295697 2.462771935247314 3.5903840282840394
+  orientation -0.24535700719601503 0.009566753213941178 0.9693855869842288 3.066045218600339
+  position 1.6710120378563107 0.16082321358884627 0.6779094434709081
 }
 TexturedBackground {
 }
@@ -26,6 +26,43 @@ Robot {
   translation 0.10996384434132739 -2.1117428514783667e-07 0.039597194138272264
   rotation -0.001407675331007267 -0.999997788729026 -0.0015623659049540863 0.0023873798655989127
   children [
+    DistanceSensor {
+      translation 0.0512363 0 -0.0124229
+      rotation 0 1 0 0
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0.498039
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "sensor_distancia"
+      boundingObject USE sensor
+    }
+    DistanceSensor {
+      translation 0.0512363 0 -0.0024229
+      rotation 0 1 0 0
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0.498039
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "sensor_color"
+      boundingObject USE sensor
+      type "infra-red"
+    }
     TouchSensor {
       boundingObject DEF CUERPO_BOT Shape {
         appearance Appearance {
@@ -50,8 +87,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.029985096841261074 -2.75415490663677e-07 0.07003389472574514
-        rotation -0.00020164033955214354 0.9999999665900638 0.00016174376245700896 0.00013457763614358733
+        translation -0.02998509684126108 -2.75415490663668e-07 0.07003389472574506
+        rotation -0.00020164033942724643 0.9999999665900638 0.00016174376235682388 0.00013457761304446904
         children [
           HingeJoint {
             jointParameters HingeJointParameters {
@@ -65,8 +102,8 @@ Robot {
               }
             ]
             endPoint Solid {
-              translation 5.956197506326323e-06 -3.30941e-07 0.07999689999972731
-              rotation -0.00020446987668002438 0.9999999787987665 -2.4383105519500117e-05 0.00013306745291873074
+              translation 5.956197506328059e-06 -3.3094099999999947e-07 0.07999689999972737
+              rotation -0.00020446987673622145 0.9999999787987666 -2.4383105526201808e-05 0.00013306744958140664
               children [
                 DEF agarre Group {
                   children [
@@ -156,28 +193,6 @@ Robot {
     GPS {
     }
     DistanceSensor {
-      translation 0.0473204 0 0.0273204
-      rotation 0 1 0 -0.3927003061004253
-      children [
-        DEF sensor Shape {
-          appearance PBRAppearance {
-            baseColor 0 0 0.498039
-            roughness 1
-            metalness 0
-          }
-          geometry Box {
-            size 0.01 0.01 0.01
-          }
-        }
-      ]
-      name "sensor_altura"
-      boundingObject USE sensor
-      lookupTable [
-        0 0 0
-        0.2 1000 0
-      ]
-    }
-    DistanceSensor {
       translation 0.0477666 -0.014776 0
       rotation 0 0 1 -0.3
       children [
@@ -198,6 +213,7 @@ Robot {
         0 0 0
         0.2 1000 0
       ]
+      redColorSensitivity 0
     }
     DistanceSensor {
       translation 0.0477666 0.014776 0
@@ -245,8 +261,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 1.090035000703172e-05 0.059999999088792 2.485156703594434e-06
-        rotation 0.1274881873142998 0.701335559704988 -0.701338145824541 2.887985278548357
+        translation 1.0900350007031727e-05 0.059999999088792 2.4851567035944334e-06
+        rotation 0.12748818731430017 0.7013355597049884 -0.7013381458245406 2.8879852785483564
         children [
           DEF WHEEL1 Shape {
             appearance DEF VERDE Appearance {
@@ -278,8 +294,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 1.1178013760214361e-05 -0.06 1.7772795950154203e-06
-        rotation -0.12729152336957528 -0.7013534204387513 0.7013560064026807 3.3948129853879583
+        translation 1.117801376021436e-05 -0.06 1.7772795950154225e-06
+        rotation -0.12729152336957533 -0.7013534204387512 0.7013560064026807 3.394812985387959
         children [
           DEF WHEEL2 Shape {
             appearance USE VERDE
@@ -305,12 +321,12 @@ Robot {
 DEF Objetivos Group {
   children [
     Solid {
-      translation 0.41 -0.05999999999999999 0.024845962021429007
+      translation 0.41 -0.59 0.024846
       rotation -0.5352154756571227 -0.04849581496052363 -0.8433223289753654 1.3533169387805497e-16
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0 1 0
+            baseColor 0.5 1 0
             metalness 0
           }
           geometry Cylinder {
@@ -329,7 +345,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0 1 0
+            baseColor 0.5 1 0
             metalness 0
           }
           geometry Box {
@@ -348,7 +364,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0 1 0
+            baseColor 0.5 1 0
             metalness 0
           }
           geometry Box {
@@ -367,7 +383,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0 1 0
+            baseColor 0.5 1 0
             metalness 0
           }
           geometry Box {
@@ -381,12 +397,12 @@ DEF Objetivos Group {
       }
     }
     Solid {
-      translation 1.09 -0.06 0.024903862037516374
+      translation 0.43 -0.01 0.0249039
       rotation 0.24118874802527182 -0.9647549921010543 -0.105241593688505 1.9499191414949138e-16
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0 1 0
+            baseColor 0.5 1 0
             metalness 0
           }
           geometry Box {
@@ -405,7 +421,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0 1 0
+            baseColor 0.5 1 0
             metalness 0
           }
           geometry Box {
@@ -424,7 +440,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0 1 0
+            baseColor 0.5 1 0
             metalness 0
           }
           geometry Box {
@@ -443,7 +459,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0 1 0
+            baseColor 0.5 1 0
             metalness 0
           }
           geometry Box {
@@ -462,7 +478,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0 1 0
+            baseColor 0.5 1 0
             metalness 0
           }
           geometry Box {
@@ -481,7 +497,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0 1 0
+            baseColor 0.5 1 0
             metalness 0
           }
           geometry Box {
@@ -500,7 +516,7 @@ DEF Objetivos Group {
       children [
         DEF objetivo Shape {
           appearance PBRAppearance {
-            baseColor 0 1 0
+            baseColor 0.5 1 0
             metalness 0
           }
           geometry Box {
@@ -941,6 +957,18 @@ DEF Obstaculos Group {
 }
 DEF Area Group {
   children [
+    Floor {
+      size 4 4
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "Grass_Sprite.png"
+          ]
+        }
+        roughness 1
+        metalness 0
+      }
+    }
     Solid {
       translation -1.96 0 0.24
       children [
@@ -1021,18 +1049,6 @@ DEF Area Group {
         }
       ]
       name "plataforma"
-    }
-    Floor {
-      size 4 4
-      appearance PBRAppearance {
-        baseColorMap ImageTexture {
-          url [
-            "Grass_Sprite.png"
-          ]
-        }
-        roughness 1
-        metalness 0
-      }
     }
   ]
 }

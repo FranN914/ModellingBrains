@@ -20,10 +20,10 @@ avoidObstacleCounter = 0
 
 # Lista de sensores del robot
 ds = []
-dsNames = ['sensor_izq', 'sensor_der', 'sensor_altura']
+dsNames = ['sensor_izq', 'sensor_der', 'sensor_color', 'sensor_distancia']
 
 # Se obtienen los sensores del robot
-for i in range(3):
+for i in range(4):
     ds.append(robot.getDevice(dsNames[i]))
     ds[i].enable(TIME_STEP)
 
@@ -50,6 +50,54 @@ for i in range(2):
 # Se obtiene el sensor de contacto
 sc = robot.getDevice("touch sensor")
 sc.enable(50)
+
+colores = []
+distancia_color = []
+puntaje_color = []
+def procesarColor(distancia, color):
+    #guarda el valor del color
+    encontrado = False
+    iterador = 0
+    print("Distancia del color: " + str(distancia))
+    print("Lista de dist: " + str(distancia_color))
+    for d in distancia_color:
+        if (d < (distancia + 50)) and (d > (distancia - 60)):
+            color_guardado = colores[iterador]
+            encontrado = True
+            break
+        else:
+            iterador = iterador + 1
+        
+    if(not encontrado):
+        print("Color no encontrado en la lista")
+        distancia_color.append(int(distancia))
+        colores.append(int(color))
+        puntaje_color.append(0)
+        color_guardado = int(color)
+        iterador = len(colores) - 1
+    print("Indice: " + str(iterador))
+    print("Puntajes actuales: "+str(puntaje_color))
+    puntaje = puntaje_color[iterador]
+    if(puntaje < -2):
+        AvoidObstacle.evitarObstaculo(robot, wheels, ds, TIME_STEP)
+    elif(puntaje > 2):
+        while(sc.getValue() < 1):
+            robot.step(TIME_STEP)
+            OrientBody.orientarCuerpo(robot, wheels, ds, TIME_STEP)
+            wheels[0].setVelocity(1.0)
+            wheels[1].setVelocity(1.0)
+        CarryTarget.llevarObjetivo(robot, gps, wheels, brazo, TIME_STEP)
+    else:
+        while(sc.getValue() < 1):
+            robot.step(TIME_STEP)
+            OrientBody.orientarCuerpo(robot, wheels, ds, TIME_STEP)
+            wheels[0].setVelocity(1.0)
+            wheels[1].setVelocity(1.0)
+        if(TestTarget.probarObjetivo(robot, gps, wheels, ds, brazo, TIME_STEP)):
+            puntaje_color[iterador] = puntaje_color[iterador] + 1
+        else:
+            puntaje_color[iterador] = puntaje_color[iterador] - 1
+    
 # Bucle principal
 while robot.step(TIME_STEP) != -1:
     # Comportamiento: Deambular
@@ -58,18 +106,15 @@ while robot.step(TIME_STEP) != -1:
     
     valor_izq = ds[0].getValue()
     valor_der = ds[1].getValue()
-    # Sensor de altura detecta algo
-    if ds[2].getValue() < 950.0:
-        # Llamada a método que evita obstaculos
-        AvoidObstacle.evitarObstaculo(robot, wheels, ds, TIME_STEP)
-    elif CarryTarget.estaOrigen(gps):
-        pass
-    # Sensor de contacto detectan objetivo
-    elif sc.getValue() > 0:
-        TestTarget.probarObjetivo(robot, gps, wheels, ds, brazo, TIME_STEP)
-    elif (valor_izq - valor_der) < 100 and (valor_izq - valor_der) > -100:
-        pass
-    # Sensores de distancia detectan algo
+    v = ds[2].getValue()
+    g = ds[3].getValue()
+    if g < 1000.0:
+        if (v < 1000.0):
+            if (v > 900.0):
+                procesarColor(g,v)
+            else:
+                leftSpeed = -1.0
+                rightSpeed = -1.0
     elif valor_izq < 950.0 or valor_der < 950.0:
         OrientBody.orientarCuerpo(robot, wheels, ds, TIME_STEP)
 
